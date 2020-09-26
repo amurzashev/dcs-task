@@ -5,5 +5,6 @@ export default axios.create({
   baseURL: "https://api.weatherstack.com/",
   params: {
     access_key: API_KEY,
+    units: "f",
   },
 });
