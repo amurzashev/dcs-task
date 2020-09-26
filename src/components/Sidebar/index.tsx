@@ -1,4 +1,4 @@
-import CityPreview from "components/CityPreview";
+import { CityPreview } from "containers";
 import React, { FC } from "react";
 import { Box } from "ui";
 
@@ -10,7 +10,7 @@ const Sidebar: FC<SidebarProps> = ({ top }) => {
   return (
     <Box px={3} py={2}>
       {top.map((t) => (
-        <CityPreview latlon={t} />
+        <CityPreview latlon={t} key={t} />
       ))}
     </Box>
   );
