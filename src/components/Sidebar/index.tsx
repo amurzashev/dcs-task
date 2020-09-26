@@ -1,17 +1,32 @@
 import { CityPreview } from "containers";
-import React, { FC } from "react";
-import { Box } from "ui";
+import React, { FC, useEffect } from "react";
+import { TopCity } from "types";
+import { Box, Text } from "ui";
 
 interface SidebarProps {
-  top: string[];
+  top: TopCity[];
+  getTop15Cities: () => void;
 }
 
-const Sidebar: FC<SidebarProps> = ({ top }) => {
+const Sidebar: FC<SidebarProps> = ({ top, getTop15Cities }) => {
+  useEffect(() => {
+    if (!top.length) {
+      getTop15Cities();
+    }
+  }, [top, getTop15Cities]);
   return (
     <Box px={3} py={2}>
-      {top.map((t) => (
-        <CityPreview latlon={t} key={t} />
-      ))}
+      <Text>top 15</Text>
+      {top.map((city) => {
+        const data = {
+          name: city.name,
+          country: city.country,
+          population: city.population,
+          lat: city.latitude,
+          lon: city.longitude,
+        };
+        return <CityPreview key={city.geoname_id} {...data} />;
+      })}
     </Box>
   );
 };

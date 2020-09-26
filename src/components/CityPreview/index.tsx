@@ -1,32 +1,30 @@
-import { getCity } from "actions/cities";
 import React, { FC, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { City } from "types";
-import { Box } from "ui";
+import styled from "ui/styled";
+import { Box, Text } from "ui";
 
 interface CityPreviewProps {
-  latlon: string;
-  cities: City[];
+  name: string;
+  country: string;
+  population: number;
+  lat: string;
+  lon: string;
 }
 
-const CityPreview: FC<CityPreviewProps> = ({ latlon, cities }) => {
-  const [city, setCity] = useState(
-    cities.find((city) => city.lat + city.lon === latlon)
-  );
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (!city) {
-      dispatch(getCity(latlon));
-    }
-  }, [city, dispatch, latlon]);
-  useEffect(() => {
-    setCity(cities.find((city) => city.lat + city.lon === latlon));
-  }, [cities, latlon]);
-  if (!city) return <Box>{latlon}</Box>;
+const PreviewBox = styled(Box)`
+  background: ${(props) => props.theme.colors.primary};
+  cursor: pointer;
+  &:not(:last-of-type) {
+    margin-bottom: 8px;
+  }
+`;
+
+const CityPreview: FC<CityPreviewProps> = ({ name, country, population }) => {
   return (
-    <Box>
-      {city.name} - {city.country}
-    </Box>
+    <PreviewBox p={3}>
+      <Text>
+        {name}, {country}, {population}
+      </Text>
+    </PreviewBox>
   );
 };
 

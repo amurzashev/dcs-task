@@ -2,7 +2,6 @@ import { Action, createStore, applyMiddleware } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { AxiosInstance } from "axios";
 import rootReducer from "./rootReducer";
 
 export const store = createStore(

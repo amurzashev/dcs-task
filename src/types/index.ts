@@ -3,6 +3,11 @@ export type Coordinates = {
   lon: string;
 };
 
+export type GeoCoordinates = {
+  lat: string;
+  lng: string;
+};
+
 export type Forecast = {
   temperature: number;
   weather_code: number;
@@ -18,6 +23,25 @@ export type Forecast = {
 
 export type City = {
   name: string;
-  country: string;
+  countryName: string;
   region: string;
-} & Coordinates;
+} & GeoCoordinates;
+
+export type TopCity = {
+  name: string;
+  modification_date: string;
+  country: string;
+  feature_class: string;
+  feature_code: string;
+  longitude: string;
+  geoname_id: string;
+  timezone: string;
+  dem: number;
+  country_code: string;
+  ascii_name: string;
+  latitude: string;
+  admin1_code: string;
+  population: number;
+  visible: boolean;
+  [key: string]: any;
+};
