@@ -1,9 +1,10 @@
 import styled from "ui/styled";
-import { space, SpaceProps } from "styled-system";
+import { space, SpaceProps, layout, LayoutProps } from "styled-system";
 
-type BoxProps = SpaceProps;
+type BoxProps = SpaceProps & LayoutProps;
 
 export default styled.div<BoxProps>`
   ${space};
+  ${layout};
   box-sizing: border-box;
 `;
