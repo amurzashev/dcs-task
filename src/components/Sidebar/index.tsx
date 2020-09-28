@@ -15,7 +15,7 @@ const Sidebar: FC<SidebarProps> = ({ top, getTop15Cities }) => {
     }
   }, [top, getTop15Cities]);
   return (
-    <Box px={3} py={2}>
+    <Box p={3}>
       <Text>top 15</Text>
       {top.map((city) => {
         const data = {
