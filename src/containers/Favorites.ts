@@ -1,4 +1,4 @@
 import { connect } from "react-redux";
-import { Forecast } from "pages";
+import { Favorites } from "components";
 
-export default connect()(Forecast);
+export default connect()(Favorites);

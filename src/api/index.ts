@@ -24,7 +24,7 @@ export const geoApi = async (cityName: string) => {
     const locations = await geo.search({
       q: cityName,
       featureCode: "P",
-      maxRows: 1,
+      maxRows: 10,
       isNameRequired: true,
     });
     return locations.geonames;

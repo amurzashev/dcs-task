@@ -22,9 +22,12 @@ export type Forecast = {
 } & Coordinates;
 
 export type City = {
+  toponymName: string;
   name: string;
   countryName: string;
-  region: string;
+  geonameId: number;
+  population: number;
+  [key: string]: any;
 } & GeoCoordinates;
 
 export type TopCity = {

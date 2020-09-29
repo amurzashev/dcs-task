@@ -16,8 +16,11 @@
     "emotion-theming": "^10.0.27",
     "geonames.js": "^2.3.0",
     "normalize.css": "^8.0.1",
+    "query-string": "^6.13.4",
     "react": "^16.13.1",
+    "react-debounce-input": "^3.2.2",
     "react-dom": "^16.13.1",
+    "react-modal": "^3.11.2",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
@@ -50,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-modal": "^3.10.6",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-system": "^5.1.10"

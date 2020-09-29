@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "ui/styled";
-import { Box, Text } from "ui";
+import { Text, Link } from "ui";
 
 interface CityPreviewProps {
   name: string;
@@ -10,21 +10,28 @@ interface CityPreviewProps {
   lon: string;
 }
 
-const PreviewBox = styled(Box)`
+const BoxLink = styled(Link)`
+  display: block;
   background: ${(props) => props.theme.colors.primary};
-  cursor: pointer;
+  color: white;
   &:not(:last-of-type) {
     margin-bottom: 8px;
   }
 `;
 
-const CityPreview: FC<CityPreviewProps> = ({ name, country, population }) => {
+const CityPreview: FC<CityPreviewProps> = ({
+  name,
+  country,
+  population,
+  lat,
+  lon,
+}) => {
   return (
-    <PreviewBox p={3}>
+    <BoxLink to={`?lat=${lat}&lng=${lon}`} p={3}>
       <Text>
         {name}, {country}, {population}
       </Text>
-    </PreviewBox>
+    </BoxLink>
   );
 };
 
