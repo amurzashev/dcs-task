@@ -1,5 +1,5 @@
 import { Sidebar, Favorites } from "containers";
-import { Forecast, Home } from "containers";
+import { Home } from "containers";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Box } from "ui";
@@ -11,7 +11,6 @@ function App() {
         <Sidebar />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/forecast/:latlon" component={Forecast} />
         </Switch>
         <Favorites />
       </Box>

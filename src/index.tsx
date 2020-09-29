@@ -9,18 +9,22 @@ import { Provider } from "react-redux";
 import { store, persistor } from "duck";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
+import { GFL, GlobalStyles } from "ui";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={"test"}>
         <ThemeProvider theme={theme}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <GlobalStyles>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </GlobalStyles>
         </ThemeProvider>
       </PersistGate>
     </Provider>
+    <GFL />
   </React.StrictMode>,
   document.getElementById("root")
 );
