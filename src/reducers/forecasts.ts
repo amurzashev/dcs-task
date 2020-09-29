@@ -1,10 +1,12 @@
-import { Forecast } from "types";
+const initialState = {};
 
-const initialState: Forecast[] = [];
-
-// temp
 export default (state = initialState, action: any) => {
   switch (action.type) {
+    case "SET_FORECAST":
+      return {
+        ...state,
+        ...action.forecast,
+      };
     default:
       return state;
   }

@@ -9,10 +9,11 @@ import {
   position,
   PositionProps,
 } from "styled-system";
+import shouldForwardProp from "@styled-system/should-forward-prop";
 
 type BoxProps = SpaceProps & LayoutProps & GridProps & PositionProps;
 
-export default styled.div<BoxProps>`
+export default styled("div", { shouldForwardProp })<BoxProps>`
   ${space};
   ${layout};
   ${grid};

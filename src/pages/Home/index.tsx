@@ -7,11 +7,14 @@ import { DebounceInput } from "react-debounce-input";
 import { Modal } from "containers";
 import { useHistory } from "react-router-dom";
 import queryString from "query-string";
+import { useDispatch } from "react-redux";
+import { setModalCity } from "actions/modalCity";
 
 const Home: FC = () => {
   const [value, setValue] = useState("");
   const [cities, setCities] = useState<City[]>([]);
   const history = useHistory();
+  const dispatch = useDispatch();
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     if (!e.target.value.length) {
@@ -25,13 +28,23 @@ const Home: FC = () => {
       lat: city.lat,
       lng: city.lng,
     };
+    setCities([]);
+    setValue("");
+    dispatch(
+      setModalCity({
+        name: city.name,
+        country: city.countryName,
+        lat: city.lat,
+        lng: city.lng,
+      })
+    );
     history.push(`?${queryString.stringify(searchQuery)}`);
   };
   return (
     <Box p={3}>
       <Box position="relative">
         <DebounceInput
-          element={Input as any} // temp
+          element={Input as any}
           value={value}
           onChange={onChange}
           minLength={0}

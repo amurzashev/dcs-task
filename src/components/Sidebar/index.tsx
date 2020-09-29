@@ -20,14 +20,7 @@ const Sidebar: FC<SidebarProps> = ({ top, getTop15Cities }) => {
         <Text fontSize={4}>TOP 15</Text>
       </Box>
       {top.map((city) => {
-        const data = {
-          name: city.name,
-          country: city.country,
-          population: city.population,
-          lat: city.latitude,
-          lon: city.longitude,
-        };
-        return <CityPreview key={city.geoname_id} {...data} />;
+        return <CityPreview key={city.geoname_id} city={city} />;
       })}
     </Box>
   );
