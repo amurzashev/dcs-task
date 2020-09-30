@@ -4,13 +4,11 @@ import { useSelector } from "react-redux";
 import { Box } from "ui";
 
 interface ForecastPreviewProps {
-  coordinates: string;
+  id: string;
 }
 
-const ForecastPreview: FC<ForecastPreviewProps> = ({ coordinates }) => {
-  const forecast = useSelector(
-    (state: RootState) => state.forecasts[coordinates]
-  );
+const ForecastPreview: FC<ForecastPreviewProps> = ({ id }) => {
+  const forecast = useSelector((state: RootState) => state.forecasts[id]);
   if (!forecast) {
     return <Box mt={2}>Loading forecast preview</Box>;
   }

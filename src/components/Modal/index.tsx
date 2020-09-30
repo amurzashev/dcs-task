@@ -14,11 +14,10 @@ const Modal: FC = () => {
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
+  const modal = useSelector((state: RootState) => state.modal);
   const lat = queryString.parse(location.search).lat as string;
   const lng = queryString.parse(location.search).lng as string;
-  const forecast = useSelector(
-    (state: RootState) => state.forecasts[`${lat},${lng}`]
-  );
+  const forecast = useSelector((state: RootState) => state.forecasts[modal]);
   const isOpen = Boolean(lat) && Boolean(lng);
   useEffect(() => {
     if (isOpen && !forecast) {
@@ -31,7 +30,7 @@ const Modal: FC = () => {
       onRequestClose={() => history.push("/")}
       style={style}
     >
-      <Body lat={lat} lng={lng} />
+      <Body />
     </RModal>
   );
 };

@@ -22,27 +22,24 @@ const BoxLink = styled(Link)`
 `;
 
 const CityPreview: FC<CityPreviewProps> = ({ city }) => {
-  const coordinates = `${city.lat},${city.lng}`;
   const dispatch = useDispatch();
-  const forecast = useSelector(
-    (state: RootState) => state.forecasts[coordinates]
-  );
+  const forecast = useSelector((state: RootState) => state.forecasts[city.id]);
   useEffect(() => {
     if (!forecast) {
-      dispatch(getForecast(city.lat, city.lng));
+      dispatch(getForecast(city.id));
     }
-  }, [city.lat, city.lng, coordinates, dispatch, forecast]);
+  }, [city.id, dispatch, forecast]);
   return (
     <BoxLink
       to={`?lat=${city.lat}&lng=${city.lng}`}
       p={3}
-      onClick={() => dispatch(setModalCity(city.id))}
+      onClick={() => dispatch(setModalCity(city))}
     >
       <Text>
         {city.name}, {city.country}
       </Text>
       <Text mt={1}>Population: {city.population}</Text>
-      <ForecastPreview coordinates={coordinates} />
+      <ForecastPreview id={city.id} />
     </BoxLink>
   );
 };

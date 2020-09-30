@@ -1,4 +1,10 @@
 import { connect } from "react-redux";
 import { Favorites } from "components";
+import { RootState } from "duck";
 
-export default connect()(Favorites);
+const mapStateToProps = (state: RootState) => ({
+  cities: state.cities,
+  favorites: state.favorites,
+});
+
+export default connect(mapStateToProps)(Favorites);

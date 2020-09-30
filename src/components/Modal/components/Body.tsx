@@ -1,16 +1,10 @@
 import { addFavorite, removeFavorite } from "actions/favorites";
 import { RootState } from "duck";
 import React, { FC } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { City } from "types";
 import { Box, Text, Button } from "ui";
 import styled from "ui/styled";
-
-interface BodyProps {
-  lat: string;
-  lng: string;
-  name?: string;
-  country?: string;
-}
 
 const Head = styled(Box)`
   background: ${(props) => props.theme.colors.primary};
@@ -33,15 +27,12 @@ const ImgBox = styled(Box)<ImgBoxProps>`
 `;
 
 interface DescriptionProps {
-  coordinates: string;
+  forecast: any;
+  isFavorite: boolean;
 }
 
-const Description: FC<DescriptionProps> = ({ coordinates }) => {
+const Description: FC<DescriptionProps> = ({ forecast, isFavorite }) => {
   const dispatch = useDispatch();
-  const forecast = useSelector(
-    (state: RootState) => state.forecasts[coordinates]
-  );
-  const favorites = useSelector((state: RootState) => state.favorites);
   if (!forecast) {
     return (
       <Box p={3}>
@@ -49,9 +40,6 @@ const Description: FC<DescriptionProps> = ({ coordinates }) => {
       </Box>
     );
   }
-  const isFavorite = favorites.some(
-    (city) => `${city.lat},${city.lng}` === coordinates
-  );
   const date = new Date(forecast.last_update);
   const formattedDate = date.toLocaleDateString("default", {
     month: "short",
@@ -105,20 +93,29 @@ const Description: FC<DescriptionProps> = ({ coordinates }) => {
   );
 };
 
-const Body: FC<BodyProps> = ({ lat, lng, name, country }) => {
+const Body: FC = () => {
+  const { modal, cities, forecasts, favorites } = useSelector(
+    (state: RootState) => ({
+      modal: state.modal,
+      cities: state.cities,
+      forecasts: state.forecasts,
+      favorites: state.favorites,
+    })
+  );
+  const forecast = forecasts[modal];
+  console.log(forecast);
+  const city: City = cities.find((city: City) => city.id === modal);
+  const isFavorite = favorites.some((fav) => fav === modal);
   return (
     <Box height="100%" display="flex" flexDirection="column">
       <Head p={3}>
         <HeadText fontSize={4} fontWeight="bold">
-          {name}, {country}
+          {city.name}, {city.country}
         </HeadText>
       </Head>
-      <Description coordinates={`${lat},${lng}`} />
+      <Description forecast={forecast} isFavorite={isFavorite} />
     </Box>
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  modal: state.modal,
-});
-export default connect(mapStateToProps)(Body);
+export default Body;

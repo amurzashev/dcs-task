@@ -41,7 +41,7 @@ const Home: FC = () => {
     };
     setCities([]);
     setValue("");
-    dispatch(setModalCity(city.id));
+    dispatch(setModalCity(city));
     history.push(`?${queryString.stringify(searchQuery)}`);
   };
   return (
