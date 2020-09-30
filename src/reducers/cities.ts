@@ -7,7 +7,9 @@ export default (state = initialState, action: any) => {
     case "ADD_CITY":
       return [...state, action.payload];
     case "ADD_CITIES":
-      return [...state, ...action.cities];
+      return [...state, ...action.cities].filter(
+        (v, i, a) => a.findIndex((t) => t.id === v.id) === i
+      );
     default:
       return state;
   }

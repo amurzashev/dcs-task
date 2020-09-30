@@ -103,7 +103,6 @@ const Body: FC = () => {
     })
   );
   const forecast = forecasts[modal];
-  console.log(forecast);
   const city: City = cities.find((city: City) => city.id === modal);
   const isFavorite = favorites.some((fav) => fav === modal);
   return (

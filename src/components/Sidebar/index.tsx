@@ -1,7 +1,7 @@
 import { CityPreview } from "containers";
 import React, { FC, useEffect } from "react";
 import { City } from "types";
-import { Box, Text } from "ui";
+import { Box, Button, Text } from "ui";
 
 interface SidebarProps {
   top: string[];
@@ -32,11 +32,26 @@ const Sidebar: FC<SidebarProps> = ({ top, getTop15Cities, cities }) => {
   const topCities = getSortedTopCities(top, cities);
   return (
     <Box p={3}>
-      <Box mb={3}>
-        <Text fontSize={4}>TOP 15</Text>
+      <Box mb={3} display="flex" alignItems="center">
+        <Text fontSize={4} mr={3}>
+          {top.length ? `TOP ${top.length}` : "NO TOP CITIES"}
+        </Text>
+        {top.length >= 1 && top.length < 15 ? (
+          <Button
+            appearance="outline"
+            color="primary"
+            onClick={() => getTop15Cities()}
+          >
+            Restore list
+          </Button>
+        ) : null}
       </Box>
       {topCities.map((city) => (
-        <CityPreview key={city.id} city={city} />
+        <CityPreview
+          key={city.id}
+          city={city}
+          isTop={Boolean(top.length > 1)}
+        />
       ))}
     </Box>
   );
