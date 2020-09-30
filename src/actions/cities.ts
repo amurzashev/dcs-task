@@ -1,18 +1,7 @@
 import { AppThunk } from "duck";
-import { geoApi } from "api";
 import { City } from "types";
 import axios from "axios";
-
-export const getCityByName = (cityName: string): AppThunk => async (
-  dispatch,
-  getState
-) => {
-  const cities: City[] | [] = await geoApi(cityName);
-  dispatch({
-    type: "ADD_CITY",
-    city: cities[0],
-  });
-};
+import { ADD_CITIES, ADD_CITY, ADD_TOP_CITIES } from "constants/cities";
 
 export const getTop15Cities = (): AppThunk => async (dispatch, getState) => {
   const response = await axios.get(
@@ -28,11 +17,11 @@ export const getTop15Cities = (): AppThunk => async (dispatch, getState) => {
   }));
   const ids = response.data.records.map((r: any) => r.fields.geoname_id);
   dispatch({
-    type: "ADD_CITIES",
+    type: ADD_CITIES,
     cities,
   });
   dispatch({
-    type: "ADD_TOP_CITIES",
+    type: ADD_TOP_CITIES,
     ids,
   });
 };
@@ -58,7 +47,7 @@ export const getUserCity = (lat: number, lng: number): AppThunk => async (
     population: data.geonames[0].population,
   };
   dispatch({
-    type: "ADD_CITY",
+    type: ADD_CITY,
     city,
   });
   dispatch({

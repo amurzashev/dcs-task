@@ -1,8 +1,9 @@
+import { ADD_NOTE } from "constants/notes";
 import { AppThunk } from "duck";
 
 export const addNote = (id: string, text: string): AppThunk => (dispatch) => {
   dispatch({
-    type: "ADD_NOTE",
+    type: ADD_NOTE,
     id,
     text,
   });

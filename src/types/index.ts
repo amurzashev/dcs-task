@@ -1,3 +1,5 @@
+import { ADD_CITIES, ADD_CITY } from "constants/cities";
+
 export type Coordinates = {
   lat: string;
   lon: string;
@@ -37,3 +39,17 @@ export type GeoCity = {
   geonameId: number;
   [key: string]: any;
 };
+
+export type CitiesState = City[];
+
+export interface AddCityAction {
+  type: typeof ADD_CITY;
+  city: City;
+}
+
+export interface AddCitiesAction {
+  type: typeof ADD_CITIES;
+  cities: City[];
+}
+
+export type CityActionTypes = AddCityAction | AddCitiesAction;
