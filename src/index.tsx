@@ -10,7 +10,8 @@ import { store, persistor } from "duck";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { GFL, GlobalStyles } from "ui";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -25,6 +26,7 @@ ReactDOM.render(
       </PersistGate>
     </Provider>
     <GFL />
+    <ToastContainer />
   </React.StrictMode>,
   document.getElementById("root")
 );

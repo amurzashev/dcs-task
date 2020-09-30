@@ -1,4 +1,5 @@
 import { addFavorite, removeFavorite } from "actions/favorites";
+import { getForecast } from "actions/forecast";
 import { RootState } from "duck";
 import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,9 +30,10 @@ const ImgBox = styled(Box)<ImgBoxProps>`
 interface DescriptionProps {
   forecast: any;
   isFavorite: boolean;
+  id: string;
 }
 
-const Description: FC<DescriptionProps> = ({ forecast, isFavorite }) => {
+const Description: FC<DescriptionProps> = ({ forecast, isFavorite, id }) => {
   const dispatch = useDispatch();
   if (!forecast) {
     return (
@@ -46,6 +48,8 @@ const Description: FC<DescriptionProps> = ({ forecast, isFavorite }) => {
     day: "numeric",
     year: "numeric",
   });
+  const hour = date.getHours();
+  const minutes = date.getMinutes();
   return (
     <Box p={3} position="relative" height="100%">
       <Text fontSize={4} mb={3}>
@@ -58,7 +62,9 @@ const Description: FC<DescriptionProps> = ({ forecast, isFavorite }) => {
         {forecast.weather_descriptions[0]}
       </Text>
       <ImgBox src={forecast.weather_icons[0]} mb={3} />
-      <Text>Last updated: {formattedDate}</Text>
+      <Text>
+        Last updated: {formattedDate} {hour}:{minutes}
+      </Text>
       <Box
         position="absolute"
         left={0}
@@ -85,7 +91,11 @@ const Description: FC<DescriptionProps> = ({ forecast, isFavorite }) => {
             Add to favs
           </Button>
         )}
-        <Button appearance="outline" color="secondary">
+        <Button
+          appearance="outline"
+          color="secondary"
+          onClick={() => dispatch(getForecast(id, true))}
+        >
           Update info
         </Button>
       </Box>
@@ -112,7 +122,7 @@ const Body: FC = () => {
           {city.name}, {city.country}
         </HeadText>
       </Head>
-      <Description forecast={forecast} isFavorite={isFavorite} />
+      <Description forecast={forecast} isFavorite={isFavorite} id={city.id} />
     </Box>
   );
 };

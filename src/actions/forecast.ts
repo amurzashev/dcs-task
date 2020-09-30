@@ -2,6 +2,7 @@ import { AppThunk } from "duck";
 
 import { forecastApi } from "api";
 import { City, Forecast } from "types";
+import { toast } from "react-toastify";
 
 export const getModalForecast = (): AppThunk => (dispatch, getState) => {
   const { modal, cities } = getState();
@@ -9,10 +10,10 @@ export const getModalForecast = (): AppThunk => (dispatch, getState) => {
   dispatch(getForecast(city.id));
 };
 
-export const getForecast = (id: string): AppThunk => async (
-  dispatch,
-  getState
-) => {
+export const getForecast = (
+  id: string,
+  showToast: boolean = false
+): AppThunk => async (dispatch, getState) => {
   const { cities } = getState();
   const city = cities.find((c) => c.id === id);
   const { data } = await forecastApi.get("current", {
@@ -30,4 +31,7 @@ export const getForecast = (id: string): AppThunk => async (
       },
     },
   });
+  if (showToast) {
+    toast.success("Forecast updated");
+  }
 };
