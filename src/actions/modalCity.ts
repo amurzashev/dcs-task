@@ -10,7 +10,7 @@ export const setModalCity = (city: City): AppThunk => (dispatch, getState) => {
   if (!cityExists) {
     dispatch({
       type: "ADD_CITY",
-      payload: city,
+      city,
     });
   }
 };
