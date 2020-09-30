@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/dcs-task/static/js/main.df96ff33.chunk.js",
-    "main.js.map": "/dcs-task/static/js/main.df96ff33.chunk.js.map",
+    "main.js": "/dcs-task/static/js/main.c3e19b94.chunk.js",
+    "main.js.map": "/dcs-task/static/js/main.c3e19b94.chunk.js.map",
     "runtime-main.js": "/dcs-task/static/js/runtime-main.bf61aad5.js",
     "runtime-main.js.map": "/dcs-task/static/js/runtime-main.bf61aad5.js.map",
     "static/css/2.87fd8954.chunk.css": "/dcs-task/static/css/2.87fd8954.chunk.css",
     "static/js/2.c8429cf3.chunk.js": "/dcs-task/static/js/2.c8429cf3.chunk.js",
     "static/js/2.c8429cf3.chunk.js.map": "/dcs-task/static/js/2.c8429cf3.chunk.js.map",
     "index.html": "/dcs-task/index.html",
-    "precache-manifest.02d70c63ca9117b4a93e6f7a9b7291a4.js": "/dcs-task/precache-manifest.02d70c63ca9117b4a93e6f7a9b7291a4.js",
+    "precache-manifest.17f107272b4448fb0676d70f6d90c87a.js": "/dcs-task/precache-manifest.17f107272b4448fb0676d70f6d90c87a.js",
     "service-worker.js": "/dcs-task/service-worker.js",
     "static/css/2.87fd8954.chunk.css.map": "/dcs-task/static/css/2.87fd8954.chunk.css.map",
     "static/js/2.c8429cf3.chunk.js.LICENSE.txt": "/dcs-task/static/js/2.c8429cf3.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.bf61aad5.js",
     "static/css/2.87fd8954.chunk.css",
     "static/js/2.c8429cf3.chunk.js",
-    "static/js/main.df96ff33.chunk.js"
+    "static/js/main.c3e19b94.chunk.js"
   ]
 }
