@@ -59,7 +59,7 @@ const CityPreview: FC<CityPreviewProps> = ({ city, isTop }) => {
       <ForecastPreview id={city.id} />
       {isTop ? (
         <UnderlinedText onClick={removeFromTopClick}>
-          Remove from favorites
+          Remove from top list
         </UnderlinedText>
       ) : null}
     </BoxLink>

@@ -1,5 +1,12 @@
 import { combineReducers } from "redux";
-import { forecasts, cities, top, favorites, modal } from "reducers";
+import {
+  forecasts,
+  cities,
+  top,
+  favorites,
+  modal,
+  userLocation,
+} from "reducers";
 
 export default combineReducers({
   forecasts,
@@ -7,4 +14,5 @@ export default combineReducers({
   top,
   favorites,
   modal,
+  userLocation,
 });

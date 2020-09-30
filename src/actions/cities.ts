@@ -10,7 +10,7 @@ export const getCityByName = (cityName: string): AppThunk => async (
   const cities: City[] | [] = await geoApi(cityName);
   dispatch({
     type: "ADD_CITY",
-    payload: cities[0],
+    city: cities[0],
   });
 };
 
@@ -34,5 +34,35 @@ export const getTop15Cities = (): AppThunk => async (dispatch, getState) => {
   dispatch({
     type: "ADD_TOP_CITIES",
     ids,
+  });
+};
+
+export const getUserCity = (lat: number, lng: number): AppThunk => async (
+  dispatch,
+  getState
+) => {
+  const { data } = await axios.get("http://api.geonames.org/findNearbyJSON", {
+    params: {
+      username: "ablitto",
+      lan: "en",
+      lat,
+      lng,
+    },
+  });
+  const city: City = {
+    name: data.geonames[0].name,
+    country: data.geonames[0].countryName,
+    lat: data.geonames[0].lat,
+    lng: data.geonames[0].lng,
+    id: String(data.geonames[0].geonameId),
+    population: data.geonames[0].population,
+  };
+  dispatch({
+    type: "ADD_CITY",
+    city,
+  });
+  dispatch({
+    type: "SET_USER_LOCATION",
+    id: city.id,
   });
 };

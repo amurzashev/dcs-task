@@ -1,4 +1,4 @@
-import { Sidebar, Favorites } from "containers";
+import { Sidebar, Favorites, UserLocation } from "containers";
 import { Home } from "containers";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
@@ -13,6 +13,7 @@ function App() {
           <Route path="/" exact component={Home} />
         </Switch>
         <Favorites />
+        <UserLocation />
       </Box>
     </Box>
   );
