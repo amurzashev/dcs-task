@@ -41,9 +41,9 @@ const AutocompleteResults: FC<AutocompleteResultsProps> = ({
   return (
     <Wrap visible={Boolean(cities.length)}>
       {cities.map((city) => (
-        <CityOption key={city.geonameId} onClick={() => callback(city)}>
+        <CityOption key={city.id} onClick={() => callback(city)}>
           <Text fontSize={2}>
-            {city.name}, {city.countryName}
+            {city.name}, {city.country}
           </Text>
         </CityOption>
       ))}

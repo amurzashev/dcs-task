@@ -119,6 +119,6 @@ const Body: FC<BodyProps> = ({ lat, lng, name, country }) => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-  modalCity: state.modalCity,
+  modal: state.modal,
 });
 export default connect(mapStateToProps)(Body);

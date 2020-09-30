@@ -26,7 +26,6 @@ export type City = {
   country: string;
   id: string;
   population: number;
-  [key: string]: any;
 } & GeoCoordinates;
 
 export type TopCity = {

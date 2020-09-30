@@ -36,11 +36,12 @@ const CityPreview: FC<CityPreviewProps> = ({ city }) => {
     <BoxLink
       to={`?lat=${city.lat}&lng=${city.lng}`}
       p={3}
-      onClick={() => dispatch(setModalCity(coordinates))}
+      onClick={() => dispatch(setModalCity(city.id))}
     >
       <Text>
-        {city.name}, {city.country}, {city.population}
+        {city.name}, {city.country}
       </Text>
+      <Text mt={1}>Population: {city.population}</Text>
       <ForecastPreview coordinates={coordinates} />
     </BoxLink>
   );

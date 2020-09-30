@@ -1,11 +1,12 @@
 import { AppThunk } from "duck";
 
 import { forecastApi } from "api";
-import { Forecast } from "types";
+import { City, Forecast } from "types";
 
 export const getModalForecast = (): AppThunk => (dispatch, getState) => {
-  const { modalCity } = getState();
-  dispatch(getForecast(modalCity.lat, modalCity.lng));
+  const { modal, cities } = getState();
+  const city: City = cities.find((city) => city.id === modal);
+  dispatch(getForecast(city.lat, city.lng));
 };
 
 export const getForecast = (lat: string, lng: string): AppThunk => async (
