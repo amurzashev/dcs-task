@@ -21,7 +21,10 @@ export const getForecast = (lat: string, lng: string): AppThunk => async (
   dispatch({
     type: "SET_FORECAST",
     forecast: {
-      [`${lat},${lng}`]: current,
+      [`${lat},${lng}`]: {
+        ...current,
+        last_update: Date.now(),
+      },
     },
   });
 };

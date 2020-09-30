@@ -1,6 +1,6 @@
 import { AppThunk } from "duck";
 import { geoApi } from "api";
-import { City, TopCity } from "types";
+import { City } from "types";
 import axios from "axios";
 
 export const getCityByName = (cityName: string): AppThunk => async (
@@ -18,20 +18,21 @@ export const getTop15Cities = (): AppThunk => async (dispatch, getState) => {
   const response = await axios.get(
     "https://public.opendatasoft.com/api/records/1.0/search/?dataset=geonames-all-cities-with-a-population-1000&q=&rows=15&sort=population&facet=timezone&facet=country"
   );
-
-  const payload = response.data.records
-    .map((r: TopCity) => {
-      const { alternate_names, ...rest } = r.fields;
-      return {
-        ...rest,
-        visible: true,
-      };
-    })
-    .sort((a: TopCity, b: TopCity) =>
-      a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1
-    );
+  const cities = response.data.records.map((r: any) => ({
+    name: r.fields.name,
+    country: r.fields.country,
+    lat: r.fields.latitude,
+    lng: r.fields.longitude,
+    id: r.fields.geoname_id,
+    population: r.fields.population,
+  }));
+  const ids = response.data.records.map((r: any) => r.fields.geoname_id);
   dispatch({
-    type: "LOAD_TOP_CITIES_FINISH",
-    payload,
+    type: "ADD_CITIES",
+    cities,
+  });
+  dispatch({
+    type: "ADD_TOP_CITIES",
+    ids,
   });
 };

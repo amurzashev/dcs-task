@@ -1,16 +1,4 @@
-type InitialState = {
-  city: string;
-  country: string;
-  lat: string;
-  lng: string;
-};
-
-const initialState: InitialState = {
-  city: "",
-  country: "",
-  lat: "",
-  lng: "",
-};
+const initialState = "";
 
 export default (state = initialState, action: any) => {
   switch (action.type) {

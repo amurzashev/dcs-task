@@ -5,6 +5,7 @@ import { getTop15Cities } from "actions/cities";
 
 const mapStateToProps = (state: RootState) => ({
   top: state.top,
+  cities: state.cities,
 });
 const mapDispatchToProps = {
   getTop15Cities,

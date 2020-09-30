@@ -2,14 +2,14 @@ import React, { FC, useEffect } from "react";
 import styled from "ui/styled";
 import { Text, Link } from "ui";
 import { useDispatch, useSelector } from "react-redux";
-import { TopCity } from "types";
+import { City } from "types";
 import { setModalCity } from "actions/modalCity";
 import { RootState } from "duck";
 import { getForecast } from "actions/forecast";
 import ForecastPreview from "./ForecastPreview";
 
 interface CityPreviewProps {
-  city: TopCity;
+  city: City;
 }
 
 const BoxLink = styled(Link)`
@@ -22,30 +22,21 @@ const BoxLink = styled(Link)`
 `;
 
 const CityPreview: FC<CityPreviewProps> = ({ city }) => {
-  const coordinates = `${city.latitude},${city.longitude}`;
+  const coordinates = `${city.lat},${city.lng}`;
   const dispatch = useDispatch();
   const forecast = useSelector(
     (state: RootState) => state.forecasts[coordinates]
   );
   useEffect(() => {
     if (!forecast) {
-      dispatch(getForecast(city.latitude, city.longitude));
+      dispatch(getForecast(city.lat, city.lng));
     }
-  }, [city.latitude, city.longitude, coordinates, dispatch, forecast]);
+  }, [city.lat, city.lng, coordinates, dispatch, forecast]);
   return (
     <BoxLink
-      to={`?lat=${city.latitude}&lng=${city.longitude}`}
+      to={`?lat=${city.lat}&lng=${city.lng}`}
       p={3}
-      onClick={() =>
-        dispatch(
-          setModalCity({
-            name: city.name,
-            country: city.country,
-            lat: city.latitude,
-            lng: city.longitude,
-          })
-        )
-      }
+      onClick={() => dispatch(setModalCity(coordinates))}
     >
       <Text>
         {city.name}, {city.country}, {city.population}

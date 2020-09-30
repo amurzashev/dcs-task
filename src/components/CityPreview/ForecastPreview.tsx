@@ -14,7 +14,7 @@ const ForecastPreview: FC<ForecastPreviewProps> = ({ coordinates }) => {
   if (!forecast) {
     return <Box mt={2}>Loading forecast preview</Box>;
   }
-  return <Box mt={2}>Current: {forecast.temperature}°</Box>;
+  return <Box mt={2}>Current: {forecast.temperature}°F</Box>;
 };
 
 export default ForecastPreview;

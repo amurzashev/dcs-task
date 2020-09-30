@@ -1,11 +1,9 @@
-import { TopCity } from "types";
-
-const initialState: TopCity[] = [];
+const initialState: string[] = [];
 
 export default (state = initialState, action: any) => {
   switch (action.type) {
-    case "LOAD_TOP_CITIES_FINISH":
-      return action.payload;
+    case "ADD_TOP_CITIES":
+      return [...state, ...action.ids];
     default:
       return state;
   }
