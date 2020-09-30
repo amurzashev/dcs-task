@@ -17,7 +17,9 @@ const getFavoriteCities = (favorites: string[], cities: City[]) => {
       }
     }
   }
-  return favCities;
+  return favCities.sort((a, b) =>
+    a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1
+  );
 };
 
 const Favorites: FC<FavoritesProps> = ({ favorites, cities }) => {

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { City } from "types";
 import { Box, Text, Button } from "ui";
 import styled from "ui/styled";
+import Note from "./Note";
 
 const Head = styled(Box)`
   background: ${(props) => props.theme.colors.primary};
@@ -65,6 +66,7 @@ const Description: FC<DescriptionProps> = ({ forecast, isFavorite, id }) => {
       <Text>
         Last updated: {formattedDate} {hour}:{minutes}
       </Text>
+      <Note />
       <Box
         position="absolute"
         left={0}
@@ -114,7 +116,7 @@ const Body: FC = () => {
   );
   const forecast = forecasts[modal];
   const city: City = cities.find((city: City) => city.id === modal);
-  const isFavorite = favorites.some((fav) => fav === modal);
+  const isFavorite = favorites.some((fav: string) => fav === modal);
   return (
     <Box height="100%" display="flex" flexDirection="column">
       <Head p={3}>

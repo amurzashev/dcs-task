@@ -6,6 +6,7 @@ import {
   favorites,
   modal,
   userLocation,
+  notes,
 } from "reducers";
 
 export default combineReducers({
@@ -15,4 +16,5 @@ export default combineReducers({
   favorites,
   modal,
   userLocation,
+  notes,
 });

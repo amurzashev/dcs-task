@@ -3,7 +3,7 @@ import { Styles } from "react-modal";
 const styles: Styles = {
   content: {
     padding: 0,
-    height: 400,
+    height: 480,
     width: 300,
     position: "relative",
     top: "initial",
