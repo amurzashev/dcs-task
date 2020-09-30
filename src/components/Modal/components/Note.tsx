@@ -7,7 +7,9 @@ import { Box, Button } from "ui";
 const Note: FC = () => {
   const dispatch = useDispatch();
   const id = useSelector((state: RootState) => state.modal);
-  const notes = useSelector((state: RootState) => state.notes);
+  const notes: { [key: string]: string } = useSelector(
+    (state: RootState) => state.notes
+  );
   const text = notes[id];
   const [value, setValue] = useState(text || "");
   useEffect(() => {

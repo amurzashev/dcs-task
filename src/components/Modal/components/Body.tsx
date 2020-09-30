@@ -115,7 +115,7 @@ const Body: FC = () => {
     })
   );
   const forecast = forecasts[modal];
-  const city: City = cities.find((city: City) => city.id === modal);
+  const city: City = cities.find((city: City) => city.id === modal)!;
   const isFavorite = favorites.some((fav: string) => fav === modal);
   return (
     <Box height="100%" display="flex" flexDirection="column">
