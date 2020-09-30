@@ -18,7 +18,7 @@ ReactDOM.render(
       <PersistGate persistor={persistor} loading={"test"}>
         <ThemeProvider theme={theme}>
           <GlobalStyles>
-            <BrowserRouter>
+            <BrowserRouter basename="/dcs-task">
               <App />
             </BrowserRouter>
           </GlobalStyles>
