@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { City } from "types";
+import { City, GeoCity } from "types";
 import { AutocompleteResults, Box } from "ui";
 import { Input } from "ui";
 import { geoApi } from "api";
@@ -20,7 +20,18 @@ const Home: FC = () => {
     if (!e.target.value.length) {
       setCities([]);
     } else {
-      geoApi(e.target.value).then((res: City[]) => setCities(res));
+      geoApi(e.target.value).then((res: GeoCity[]) =>
+        setCities(
+          res.map((geoCity) => ({
+            name: geoCity.name,
+            country: geoCity.countryName,
+            lat: geoCity.lat,
+            lng: geoCity.lng,
+            id: String(geoCity.geonameId),
+            population: geoCity.population,
+          }))
+        )
+      );
     }
   };
   const callback = (city: City) => {

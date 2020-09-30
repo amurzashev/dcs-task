@@ -28,14 +28,12 @@ export type City = {
   population: number;
 } & GeoCoordinates;
 
-export type TopCity = {
+export type GeoCity = {
   name: string;
-  country: string;
-  longitude: string;
-  geoname_id: string;
-  country_code: string;
-  latitude: string;
   population: number;
-  visible: boolean;
+  lat: string;
+  lng: string;
+  countryName: string;
+  geonameId: number;
   [key: string]: any;
 };
