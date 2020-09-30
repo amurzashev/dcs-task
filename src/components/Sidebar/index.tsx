@@ -34,7 +34,7 @@ const Sidebar: FC<SidebarProps> = ({ top, getTop15Cities, cities }) => {
     <Box p={3}>
       <Box mb={3} display="flex" alignItems="center">
         <Text fontSize={4} mr={3}>
-          {top.length ? `TOP ${top.length}` : "NO TOP CITIES"}
+          {top.length ? `TOP ${top.length}` : "Loading top cities"}
         </Text>
         {top.length >= 1 && top.length < 15 ? (
           <Button
