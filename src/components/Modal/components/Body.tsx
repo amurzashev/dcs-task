@@ -3,7 +3,7 @@ import { getForecast } from "actions/forecast";
 import { RootState } from "duck";
 import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { City } from "types";
+import { City, Forecast } from "types";
 import { Box, Text, Button } from "ui";
 import styled from "ui/styled";
 import Note from "./Note";
@@ -29,7 +29,7 @@ const ImgBox = styled(Box)<ImgBoxProps>`
 `;
 
 interface DescriptionProps {
-  forecast: any;
+  forecast: Forecast;
   isFavorite: boolean;
   id: string;
 }

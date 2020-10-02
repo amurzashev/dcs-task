@@ -21,6 +21,7 @@ export type Forecast = {
   wind_speed: number;
   humidity: number;
   visibility: number;
+  last_update: number;
 } & Coordinates;
 
 export type City = {
